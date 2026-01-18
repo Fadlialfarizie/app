@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "username": "diva",
+        "password": "b'$2b$12$N36YFzBq0cin6O6HWssG9uIq5nC2lf0anD3egWHjmDEDRDecgJylm'",
+        "role": "manager"
+    },
+    {
+        "id": 2,
+        "username": "dwi",
+        "password": "b'$2b$12$G4OQq6lEVObJk.X0IuDlIuEvy8zzLMmkx.Zdj9Odd67Ia130X1nva'",
+        "role": "manager"
+    }
+]
