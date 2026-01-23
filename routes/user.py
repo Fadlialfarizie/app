@@ -1,12 +1,13 @@
 from flask import Blueprint, jsonify, request
 from services.user_service import get_all_user, create_data_user, remove_user
-
+from utils.auth_helper import generate_token_access
 
 bp_user = Blueprint('user',__name__, url_prefix='/user')
 
 @bp_user.route('/')
 def get_user():
     data_user = get_all_user()
+
     return jsonify({
         'success' : True,
         'message' : "success",
@@ -23,10 +24,12 @@ def create_user():
             'message' : 'request kosong'
         }), 400
     
-    if not 'username' in data_request or not 'role' in data_request:
+    required_fields = ('username', 'password', 'role')
+    
+    if not all(field in data_request for field in required_fields):
         return jsonify({
             'success' : False,
-            'message' : 'nama/role tidak boleh kosong'
+            'message' : 'form wajib diisi semua'
         }), 400
     
     

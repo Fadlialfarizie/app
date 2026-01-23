@@ -1,14 +1,8 @@
 [
     {
-        "id": 1,
-        "username": "diva",
-        "password": "b'$2b$12$N36YFzBq0cin6O6HWssG9uIq5nC2lf0anD3egWHjmDEDRDecgJylm'",
-        "role": "manager"
-    },
-    {
-        "id": 2,
+        "id": 3,
         "username": "dwi",
-        "password": "b'$2b$12$G4OQq6lEVObJk.X0IuDlIuEvy8zzLMmkx.Zdj9Odd67Ia130X1nva'",
+        "password": "$2b$12$EVr8zY1PcO5alHGBMBqhKuOJOFAhHkqZQxrGqm33cTWMaGANRN32y",
         "role": "manager"
     }
 ]
