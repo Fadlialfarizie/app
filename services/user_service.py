@@ -1,5 +1,6 @@
 from models.user_model import UserModel
-import bcrypt
+from utils.exception_custom import UserTidakDitemukan
+from utils.hashing import hashing_password, validate_password
 
 
 def get_all_user():
@@ -9,7 +10,7 @@ def get_user_by_name(name):
     data_user = get_all_user()
     user = next((i for i in data_user if name == i['username']), None)
     if not user:
-        raise ValueError("user tidak ditemukan")
+        raise UserTidakDitemukan("user tidak ditemukan")
     return user
 
 
@@ -18,16 +19,17 @@ def get_user_by_id(id):
     user = next((i for i in data_user if i['id'] == id), None)
 
     if not user:
-        raise ValueError('user tidak ditemukan')
+        raise UserTidakDitemukan('user tidak ditemukan')
     
     return user
 
 
 def validate_user(username, password):
     data_user = get_all_user()
-    user = next((i for i in data_user if username == i['username'] and password == i['password']), None)
+
+    user = next((i for i in data_user if username == i['username'] and validate_password(password, i['password'])), None)
     if not user:
-        raise ValueError("user tidak ditemukan")
+        raise UserTidakDitemukan("user tidak ditemukan")
     return user
 
 def create_data_user(data_request):
@@ -45,12 +47,14 @@ def create_data_user(data_request):
     if len(password) < 8:
         raise ValueError('password minimal 8 karakter')
 
-    password_hash = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+    password_hash = hashing_password(password).decode('utf-8')
+
+
 
     new_user = {
         'id' : id,
         'username' : data_request['username'],
-        'password' : str(password_hash),
+        'password' : password_hash,
         'role' : data_request['role']
     }
     

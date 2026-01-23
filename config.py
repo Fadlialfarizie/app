@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-class config:
+class Config:
     SECRET_KEY = os.getenv('SECRET_KEY')
     JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
     JWT_EXPIRES_MINUTES = int(os.getenv('JWT_EXPIRES_MINUTES'))
