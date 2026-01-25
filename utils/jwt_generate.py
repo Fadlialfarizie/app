@@ -5,6 +5,8 @@ from uuid import uuid4
 from functools import wraps
 from datetime import datetime, timedelta
 
+SECRET_KEY = 'rasiah'
+
 def generate_token_access(user):
     payload = {
         'username': user['id'],
