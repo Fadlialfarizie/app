@@ -1,10 +1,7 @@
 from flask import Blueprint, jsonify, request, abort
 from services.user_service import create_data_user, validate_user
-<<<<<<< HEAD
 from utils.jwt_generate import generate_token_access, generate_token_refresh
-=======
-from utils.auth_helper import generate_token_access, generate_token_refresh
->>>>>>> 75aec71ff7999860aa568d2244a291d49a5e2984
+from errors.handler import ValidationError
 
 
 bp_auth = Blueprint('auth', __name__, url_prefix="/auth")
@@ -42,7 +39,7 @@ def login():
         abort(401, "data request kosong")
 
     if not 'username' in data_request or not 'password' in data_request:
-        abort(401, 'username/password wajib diisi')
+        raise ValidationError('username/password salah')
     
     user = validate_user(data_request['username'], data_request['password'])
 
@@ -65,12 +62,8 @@ def login():
         secure=False,
         samesite='Lax'
     )
-<<<<<<< HEAD
     return respons, 200
 
 @bp_auth.route('/logout', methods=['POST'])
 def logout():
     pass
-=======
-    return respons, 200
->>>>>>> 75aec71ff7999860aa568d2244a291d49a5e2984

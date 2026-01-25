@@ -1,10 +1,6 @@
 from flask import Blueprint, jsonify, request
 from services.user_service import get_all_user, create_data_user, remove_user
-<<<<<<< HEAD
 from utils.jwt_generate import generate_token_access
-=======
-from utils.auth_helper import generate_token_access
->>>>>>> 75aec71ff7999860aa568d2244a291d49a5e2984
 
 bp_user = Blueprint('user',__name__, url_prefix='/user')
 

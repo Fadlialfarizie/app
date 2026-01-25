@@ -1,11 +1,7 @@
 from models.user_model import UserModel
 from utils.exception_custom import UserTidakDitemukan
-<<<<<<< HEAD
+from errors.handler import ValidationError, NotFoundError
 from utils.hashing import hashing_password, validate_password
-=======
-from utils.hashing_helper import hashing_password, validate_password
-import bcrypt
->>>>>>> 75aec71ff7999860aa568d2244a291d49a5e2984
 
 
 def get_all_user():
@@ -15,7 +11,7 @@ def get_user_by_name(name):
     data_user = get_all_user()
     user = next((i for i in data_user if name == i['username']), None)
     if not user:
-        raise UserTidakDitemukan("user tidak ditemukan")
+        raise NotFoundError("user tidak ditemukan")
     return user
 
 
@@ -24,7 +20,7 @@ def get_user_by_id(id):
     user = next((i for i in data_user if i['id'] == id), None)
 
     if not user:
-        raise UserTidakDitemukan('user tidak ditemukan')
+        raise NotFoundError('user tidak ditemukan')
     
     return user
 
@@ -34,7 +30,7 @@ def validate_user(username, password):
 
     user = next((i for i in data_user if username == i['username'] and validate_password(password, i['password'])), None)
     if not user:
-        raise UserTidakDitemukan("user tidak ditemukan")
+        raise ValidationError("user tidak ditemukan")
     return user
 
 def create_data_user(data_request):

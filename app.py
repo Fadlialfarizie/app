@@ -3,6 +3,8 @@ from config import Config
 from extentions import init_extentions
 from routes.user import bp_user
 from routes.auth import bp_auth
+from errors.handler import register_error_handlers
+
 
 
 def create_app():
@@ -10,10 +12,15 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
+
     init_extentions(app)
+
+
 
     app.register_blueprint(bp_user)
     app.register_blueprint(bp_auth)
+
+    register_error_handlers(app)
 
 
     return app
