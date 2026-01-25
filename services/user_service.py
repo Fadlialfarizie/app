@@ -1,6 +1,11 @@
 from models.user_model import UserModel
 from utils.exception_custom import UserTidakDitemukan
+<<<<<<< HEAD
 from utils.hashing import hashing_password, validate_password
+=======
+from utils.hashing_helper import hashing_password, validate_password
+import bcrypt
+>>>>>>> 75aec71ff7999860aa568d2244a291d49a5e2984
 
 
 def get_all_user():
