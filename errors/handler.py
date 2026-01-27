@@ -30,6 +30,12 @@ class NotFoundError(AppError):
         super().__init__(message, code='not_found_error', status_code=404)
 
 
+class ValueError(AppError):
+    def __init__(self, message='value error'):
+        super().__init__(message, code='VALUE_ERROR', status_code=400)
+
+
+
 def register_error_handlers(app):
 
     @app.errorhandler(AppError)
@@ -43,12 +49,12 @@ def register_error_handlers(app):
     def handle_http_error(err):
         return jsonify({
             'success' : False,
-            'message' : err.message
-        }), err.status_code
+            'message' : err.description
+        }), err.code
     
     @app.errorhandler(Exception)
-    def handle_erro(err):
+    def handle_error(err):
         return jsonify({
             'success' : False,
-            'message' : err.message
-        }), err.status_code
+            'message' : err.args
+        }), 400
