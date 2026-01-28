@@ -10,5 +10,11 @@
         "username": "hanum",
         "password": "$2b$12$H2XFGi18TLR4oPf8.DRKiuaUzyyEJYPkLVxQgahFnHsa4Gt1qn/8K",
         "role": "supervisor"
+    },
+    {
+        "id": 5,
+        "username": "dwi",
+        "password": "$2b$12$CBCrZEEytd3J5Hcud4Lq8..j.B0C3EhcUV/xRtK2Pdi2M31L7hzTC",
+        "role": "supervisor"
     }
 ]

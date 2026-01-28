@@ -2,23 +2,22 @@ from flask import Blueprint, jsonify, request, abort
 from services.user_service import create_data_user, validate_user
 from utils.jwt_generate import generate_token_access, generate_token_refresh
 from errors.handler import ValidationError
+from schemas.auth_schema import RegisterSchema, LoginSchema
 
 
 bp_auth = Blueprint('auth', __name__, url_prefix="/auth")
+register_schema = RegisterSchema()
+login_schema = LoginSchema
 
 
 @bp_auth.route('/register', methods=['POST'])
 def register():
-    data_request = request.json
+    try:
+     data_request = register_schema(request.json)
+    except Exception as e:
+        raise ValueError(e)
 
-    if not data_request:
-        abort(401, "data request kosong")
     
-    required_fields = ('username', 'password', 'role')
-
-    if not all(field in data_request for field in required_fields):
-        abort(400, 'form harus lengkap')
-
     create_data_user(data_request)
 
     return jsonify({
@@ -33,10 +32,11 @@ def register():
 
 @bp_auth.route('/login', methods=['POST'])
 def login():
-    data_request = request.json
+    try:
+        data_request = login_schema.load(request.json)
+    except Exception as e:
+        raise ValueError(e.messages)
 
-    if not data_request:
-        abort(401, "data request kosong")
 
     if not 'username' in data_request or not 'password' in data_request:
         raise ValidationError('username/password salah')

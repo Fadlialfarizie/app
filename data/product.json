@@ -4,5 +4,11 @@
         "produk": "ayam",
         "harga": 1000,
         "stok": 20
+    },
+    {
+        "id": 2,
+        "produk": "ayam",
+        "harga": 1000.0,
+        "stok": 1
     }
 ]
