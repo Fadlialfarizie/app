@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, request
 from services.user_service import get_all_user, create_data_user, remove_user
-from utils.jwt_generate import generate_token_access
+from schemas.product_schema import UserSchema
 
 bp_user = Blueprint('user',__name__, url_prefix='/user')
+schema = UserSchema()
 
 @bp_user.route('/')
 def get_user():

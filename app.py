@@ -10,10 +10,11 @@ from errors.handler import register_error_handlers
 
 def create_app():
 
+    Config.validate()
+
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    Config.validate()
     
 
     init_extentions(app)
