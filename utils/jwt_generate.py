@@ -35,7 +35,7 @@ def required(f):
         token_cookies = request.cookies.get('access_token')
 
         if not token_cookies:
-            abort(401, "login dulu")
+            raise jwt.InvalidTokenError('token kosong')
 
         try:
             g.user = jwt.decode(token_cookies, current_app.config['JWT_SECRET_KEY'], algorithms=['HS256'])

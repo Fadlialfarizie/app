@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from config import Config
 from extentions import init_extentions
 from routes.user import bp_user
@@ -13,6 +13,8 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
+    Config.validate()
+    
 
     init_extentions(app)
 
@@ -29,5 +31,12 @@ def create_app():
 
 app = create_app()
 
+@app.route("/health")
+def health_check():
+    return jsonify({
+        'success' : True,
+        'message' : 'oke'
+    }), 200
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
