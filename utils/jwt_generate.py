@@ -1,7 +1,7 @@
 import jwt
 from flask import current_app, request, abort, g
-from utils.exception_custom import TokenExpirederror
 from uuid import uuid4
+from errors.handler import ValidationError, AuthError
 from functools import wraps
 from datetime import datetime, timedelta
 
@@ -40,7 +40,7 @@ def required(f):
         try:
             g.user = jwt.decode(token_cookies, current_app.config['JWT_SECRET_KEY'], algorithms=['HS256'])
         except jwt.ExpiredSignatureError as e:
-            raise TokenExpirederror("token exoired") from e
+            raise AuthError("token exoired") from e
         except jwt.InvalidTokenError as e:
             raise jwt.InvalidTokenError('token invalid') from e
         return f(*args, **kwargs)
