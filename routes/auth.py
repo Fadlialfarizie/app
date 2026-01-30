@@ -7,15 +7,15 @@ from schemas.auth_schema import RegisterSchema, LoginSchema
 
 bp_auth = Blueprint('auth', __name__, url_prefix="/auth")
 register_schema = RegisterSchema()
-login_schema = LoginSchema
+login_schema = LoginSchema()
 
 
 @bp_auth.route('/register', methods=['POST'])
 def register():
     try:
      data_request = register_schema(request.json)
-    except Exception as e:
-        raise ValueError(e)
+    except ValueError as e:
+        raise ValueError(e.messages) from e
 
     
     create_data_user(data_request)
