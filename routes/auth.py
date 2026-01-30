@@ -35,7 +35,7 @@ def login():
     try:
         data_request = login_schema.load(request.json)
     except Exception as e:
-        raise ValueError(e.messages)
+        raise ValueError(e)
 
 
     if not 'username' in data_request or not 'password' in data_request:
