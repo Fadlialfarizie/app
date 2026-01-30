@@ -3,6 +3,6 @@ from flask_cors import CORS
 
 
 def init_extentions(app: Flask):
-    CORS.init_app(app, origins="http://localhost:8158")
+    CORS.init_app(app, origins="http://localhost:*")
 
 

@@ -11,7 +11,7 @@ class Config:
 
     @staticmethod
     def validate():
-        required = ['SECRET_KEY', 'JWT_SECRET_KEY', 'JWT_EXPIRES_MINUTES']
+        required = ['SECRET_KEY', 'JWT_SECRET_KEY']
 
         for key in required:
             if not os.getenv(key):
