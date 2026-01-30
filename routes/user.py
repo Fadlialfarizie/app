@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from services.user_service import get_all_user, create_data_user, remove_user
-from schemas.product_schema import UserSchema
+from schemas.user_schema import UserSchema
 
 bp_user = Blueprint('user',__name__, url_prefix='/user')
 schema = UserSchema()
