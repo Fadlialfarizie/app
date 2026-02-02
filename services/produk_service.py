@@ -17,6 +17,16 @@ def get_product_by_name(name):
     return product
 
 
+
+def filter_produk_by_name(key_search):
+    products = get_all_product()
+    filter_produk = list(filter(lambda x: key_search.lower() in x['produk'].lower(), products))
+
+    if not filter_produk:
+        raise NotFoundError('produk tidak ditemukan')
+
+    return filter_produk
+
 def create_product(data_product):
     all_product =get_all_product()
     product = data_product

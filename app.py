@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from config import Config
+from logger.logger import setup_logging
 from extentions import init_extentions
 from routes.user import bp_user
 from routes.auth import bp_auth
@@ -10,12 +11,14 @@ from errors.handler import register_error_handlers
 
 def create_app():
 
+   
     Config.validate()
 
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    
+
+    setup_logging(app)
 
     init_extentions(app)
 
@@ -32,7 +35,7 @@ def create_app():
 
 app = create_app()
 
-@app.route("/health")
+@app.route("/")
 def health_check():
     return jsonify({
         'success' : True,

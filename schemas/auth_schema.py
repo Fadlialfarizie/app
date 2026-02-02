@@ -1,6 +1,7 @@
 from marshmallow import Schema, fields, EXCLUDE, validate
 
 
+
 class RegisterSchema(Schema):
     class Meta:
         unknown = EXCLUDE

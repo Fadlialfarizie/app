@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify, request, abort
+import secrets
+from flask import Blueprint, jsonify, request, session
 from services.user_service import create_data_user, validate_user
-from utils.jwt_generate import generate_token_access, generate_token_refresh
+from utils.jwt_generate import generate_token_access, generate_token_refresh, login_required
 from errors.handler import ValidationError
 from schemas.auth_schema import RegisterSchema, LoginSchema
 
@@ -13,7 +14,7 @@ login_schema = LoginSchema()
 @bp_auth.route('/register', methods=['POST'])
 def register():
     try:
-     data_request = register_schema(request.json)
+        data_request = register_schema.load(request.json)
     except ValueError as e:
         raise ValueError(e.messages) from e
 
@@ -46,13 +47,18 @@ def login():
 
     token_access = generate_token_access(user)
     token_refresh = generate_token_refresh(user)
+    token_csrf = secrets.token_hex(16)
 
+    session['csrf_token'] = token_csrf
     
 
     respons = jsonify({
         'success' : True,
         'message' : 'login sukses',
-        'data' : user
+        'data' : {
+            'username' : user['username'],
+            'role' : user['role']
+        }
     })
 
     respons.set_cookie(
@@ -62,8 +68,42 @@ def login():
         secure=False,
         samesite='Lax'
     )
+
+    respons.set_cookie(
+        'refresh_token',
+        token_refresh,
+        httponly=True,
+        secure=True,
+        samesite='Lax'
+    )
+
     return respons, 200
 
 @bp_auth.route('/logout', methods=['POST'])
+@login_required
 def logout():
-    pass
+    session.clear()
+
+    response = jsonify({
+        'success' : True,
+        'message' : 'logout sukses'
+    })
+
+    response.set_cookie(
+        'access_token',
+        '',
+        httponly=True,
+        secure=False,
+        samesite='Lax'
+    )
+
+
+    response.set_cookie(
+        'refresh_token',
+        '',
+        httponly=True,
+        secure=False,
+        samesite='Lax'
+    )
+
+    return response, 200

@@ -1,5 +1,5 @@
 from flask import  Blueprint, jsonify, request, abort
-from services.produk_service import get_all_product,get_product_by_name, create_product
+from services.produk_service import get_all_product,filter_produk_by_name, create_product
 from marshmallow import ValidationError
 from schemas.product_schema import ProductSchema
 
@@ -10,9 +10,9 @@ schema = ProductSchema()
 
 @bp_produk.route('/')
 def products():
-    name = request.args.get('name')
+    name = request.args.get('produk')
     if name:
-        product = get_product_by_name(name)
+        product = filter_produk_by_name(name)
         return jsonify({
             'success' : True,
             'message' : 'get product',
