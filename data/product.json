@@ -12,8 +12,9 @@
         "stok": 1
     },
     {
-        "produk" : "nasi rames",
-        "harga" : 5000.0,
-        "stok" : 3
+        "id": 3,
+        "produk": "nasi padang",
+        "harga": 3000.0,
+        "stok": 0
     }
 ]

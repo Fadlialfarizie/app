@@ -65,8 +65,8 @@ def login():
         'access_token',
         token_access,
         httponly=True,
-        secure=False,
-        samesite='Lax'
+        secure=True,
+        samesite='None'
     )
 
     respons.set_cookie(
@@ -74,7 +74,7 @@ def login():
         token_refresh,
         httponly=True,
         secure=True,
-        samesite='Lax'
+        samesite='None'
     )
 
     return respons, 200
