@@ -1,11 +1,5 @@
 [
     {
-        "id": 3,
-        "username": "dwi",
-        "password": "$2b$12$EVr8zY1PcO5alHGBMBqhKuOJOFAhHkqZQxrGqm33cTWMaGANRN32y",
-        "role": "manager"
-    },
-    {
         "id": 4,
         "username": "hanum",
         "password": "$2b$12$H2XFGi18TLR4oPf8.DRKiuaUzyyEJYPkLVxQgahFnHsa4Gt1qn/8K",
@@ -15,7 +9,7 @@
         "id": 5,
         "username": "dwi",
         "password": "$2b$12$CBCrZEEytd3J5Hcud4Lq8..j.B0C3EhcUV/xRtK2Pdi2M31L7hzTC",
-        "role": "supervisor"
+        "role": "ceo"
     },
     {
         "id": 6,

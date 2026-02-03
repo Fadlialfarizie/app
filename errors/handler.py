@@ -29,6 +29,10 @@ class NotFoundError(AppError):
     def __init__(self, message='resource not found'):
         super().__init__(message, code='not_found_error', status_code=404)
 
+class ConflictError(AppError):
+    def __init__(self, message='conflict data'):
+        super().__init__(message, code='conflict_error', status_code=409)
+
 
 class ValueError(AppError):
     def __init__(self, message='value error'):

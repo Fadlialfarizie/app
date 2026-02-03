@@ -1,8 +1,8 @@
 import secrets
 from flask import Blueprint, jsonify, request, session
-from services.user_service import create_data_user, validate_user
+from services.user_service import create_data_user, validate_user, get_user_by_name
 from utils.jwt_generate import generate_token_access, generate_token_refresh, login_required
-from errors.handler import ValidationError
+from errors.handler import ValidationError, AuthError, ConflictError
 from schemas.auth_schema import RegisterSchema, LoginSchema
 
 
@@ -19,6 +19,12 @@ def register():
         raise ValueError(e.messages) from e
 
     
+    validate = get_user_by_name(data_request['username'])
+
+    if validate:
+        raise ConflictError('username sudah terdaftar')
+
+
     create_data_user(data_request)
 
     return jsonify({
@@ -77,6 +83,28 @@ def login():
     )
 
     return respons, 200
+
+
+
+@bp_auth.route('/csrf')
+@login_required
+def get_csrf():
+    if not session['csrf_token']:
+        raise AuthError('anda belum login')
+    
+
+    token_csrf = session['csrf_token']
+    return jsonify({
+        'success' : True,
+        'message' : 'csrf token',
+        'data' : token_csrf
+    })
+
+
+
+
+
+
 
 @bp_auth.route('/logout', methods=['POST'])
 def logout():
