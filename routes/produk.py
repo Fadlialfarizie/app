@@ -1,7 +1,11 @@
 from flask import  Blueprint, jsonify, request, abort
-from services.produk_service import get_all_product,filter_produk_by_name, create_product
-from marshmallow import ValidationError
+from services.produk_service import get_all_product,filter_produk_by_name, create_product, remove_product
+from errors.handler import ValidationError
+from utils.jwt_generate import login_required
 from schemas.product_schema import ProductSchema
+
+
+
 
 
 
@@ -25,11 +29,12 @@ def products():
     })
 
 @bp_produk.route('/', methods=['POST'])
+@login_required
 def add_product():
     try:
         produk_valid = schema.load(request.json)
     except ValidationError as e:
-        raise ValueError(e.messages)
+        raise ValidationError(e.messages)
 
     new_produk = create_product(produk_valid)
 
@@ -38,4 +43,15 @@ def add_product():
         'message' : 'produk berhasil ditambahkan',
         'data' : new_produk
     })
+
+@bp_produk.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_produk(id):
     
+    hapus_produk = remove_product(id)
+
+    return jsonify({
+        'success' : True,
+        'message' : 'produk berhasil dihapus',
+        'data' : hapus_produk
+    })

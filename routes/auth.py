@@ -35,13 +35,10 @@ def register():
 def login():
     try:
         data_request = login_schema.load(request.json)
-    except ValueError as e:
-        raise ValueError(e.messages) from e
+    except ValidationError as e:
+        raise ValidationError(e.messages)
 
 
-    if not 'username' in data_request or not 'password' in data_request:
-        raise ValidationError('username/password salah')
-    
     user = validate_user(data_request['username'], data_request['password'])
 
 
@@ -80,7 +77,6 @@ def login():
     return respons, 200
 
 @bp_auth.route('/logout', methods=['POST'])
-@login_required
 def logout():
     session.clear()
 

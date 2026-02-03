@@ -16,5 +16,11 @@
         "username": "dwi",
         "password": "$2b$12$CBCrZEEytd3J5Hcud4Lq8..j.B0C3EhcUV/xRtK2Pdi2M31L7hzTC",
         "role": "supervisor"
+    },
+    {
+        "id": 6,
+        "username": "mutia",
+        "password": "$2b$12$.EAysIcvccHghqMo9iSnt.7chHOJ.cjz4wwb6Zo4S5l81OSw0PCBW",
+        "role": "hrd"
     }
 ]

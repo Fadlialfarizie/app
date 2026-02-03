@@ -7,9 +7,9 @@ def get_all_product():
     products = ProductModel.load_product()
     return products
 
-def get_product_by_name(name):
+def get_product_by_id(id):
     products = get_all_product()
-    product = next((i for i in products if i['name'] == name), None)
+    product = next((i for i in products if i['id'] == id), None)
 
     if not product:
         raise NotFoundError('produk tidak ditemukan')
@@ -61,3 +61,16 @@ def create_product(data_product):
 
     ProductModel.save_produk_json(all_product)
     return new_produk
+
+def remove_product(id):
+    products = get_all_product()
+
+    produk_dihapus = get_product_by_id(id)
+
+    delete_produk = list(filter(lambda x: x['id'] != id, products))
+
+    ProductModel.save_produk_json(delete_produk)
+
+    return produk_dihapus
+
+    
