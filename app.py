@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 from config import Config
 from logger.logger import setup_logging
-from extentions import init_extentions
+from extensions import init_extensions
 from routes.user import bp_user
 from routes.auth import bp_auth
 from routes.produk import bp_produk
@@ -20,7 +20,7 @@ def create_app():
 
     setup_logging(app)
 
-    init_extentions(app)
+    init_extensions(app)
 
 
 

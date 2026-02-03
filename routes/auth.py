@@ -118,6 +118,7 @@ def logout():
     response.set_cookie(
         'access_token',
         '',
+        max_age=0,
         httponly=True,
         secure=True,
         samesite='None',
@@ -128,6 +129,7 @@ def logout():
     response.set_cookie(
         'refresh_token',
         '',
+        max_age=0,
         httponly=True,
         secure=True,
         samesite='None',
