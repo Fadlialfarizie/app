@@ -63,7 +63,8 @@ def login():
         token_access,
         httponly=True,
         secure=True,
-        samesite='None'
+        samesite='None',
+        path='/'
     )
 
     respons.set_cookie(
@@ -71,7 +72,8 @@ def login():
         token_refresh,
         httponly=True,
         secure=True,
-        samesite='None'
+        samesite='None',
+        path='/'
     )
 
     return respons, 200
@@ -89,8 +91,9 @@ def logout():
         'access_token',
         '',
         httponly=True,
-        secure=False,
-        samesite='Lax'
+        secure=True,
+        samesite='None',
+        path='/'
     )
 
 
@@ -98,8 +101,9 @@ def logout():
         'refresh_token',
         '',
         httponly=True,
-        secure=False,
-        samesite='Lax'
+        secure=True,
+        samesite='None',
+        path='/'
     )
 
     return response, 200
