@@ -1,7 +1,7 @@
 from flask import  Blueprint, jsonify, request
 from services.produk_service import get_all_product,filter_produk_by_name, create_product, remove_product
 from errors.handler import ValidationError
-from utils.jwt_generate import login_required
+from utils.jwt_generate import login_required, role_required
 from schemas.product_schema import ProductSchema
 
 
@@ -46,6 +46,7 @@ def add_product():
 
 @bp_produk.route('/<int:id>', methods=['DELETE'])
 @login_required
+@role_required('admin')
 def delete_produk(id):
     
     hapus_produk = remove_product(id)

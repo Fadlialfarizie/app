@@ -105,8 +105,8 @@ def get_csrf():
 
 
 
-
 @bp_auth.route('/logout', methods=['POST'])
+@login_required
 def logout():
     session.clear()
 

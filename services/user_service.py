@@ -9,8 +9,8 @@ def get_all_user():
 def get_user_by_name(name):
     data_user = get_all_user()
     user = next((i for i in data_user if name == i['username']), None)
-    if not user:
-        raise NotFoundError("user tidak ditemukan")
+
+    
     return user
 
 
