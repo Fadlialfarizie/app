@@ -1,6 +1,10 @@
 import json
 import os
+import logging
+from errors.handler import InternalError
 
+
+logger = logging.getLogger(__name__)
 
 class ProductModel:
     DEFAULT_PATH = 'data/product.json'
@@ -16,7 +20,8 @@ class ProductModel:
         except FileNotFoundError:
             return []
         except json.JSONDecodeError:
-            raise ValueError("gagal memuat data produk cek data json")
+            logger.error("gagal memuat data produk cek data json")
+            raise InternalError
     
     @staticmethod
     def save_produk_json(data, path=None):

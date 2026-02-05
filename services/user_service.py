@@ -1,6 +1,10 @@
+import logging
 from models.user_model import UserModel
-from errors.handler import ValidationError, NotFoundError, ValueError
+from errors.handler import ValidationError, NotFoundError
 from utils.hashing import hashing_password, validate_password
+
+logger = logging.getLogger(__name__)
+
 
 
 def get_all_user():
@@ -10,7 +14,6 @@ def get_user_by_name(name):
     data_user = get_all_user()
     user = next((i for i in data_user if name == i['username']), None)
 
-    
     return user
 
 
@@ -29,6 +32,7 @@ def validate_user(username, password):
 
     user = next((i for i in data_user if username == i['username'] and validate_password(password, i['password'])), None)
     if not user:
+        logger.error(f'{username} gagal login')
         raise ValidationError("user tidak ditemukan")
     return user
 
@@ -45,7 +49,7 @@ def create_data_user(data_request):
     password = data_request['password']
 
     if len(password) < 8:
-        raise ValueError('password minimal 8 karakter')
+        raise ValidationError('password minimal 8 karakter')
 
     password_hash = hashing_password(password).decode('utf-8')
 
@@ -60,6 +64,7 @@ def create_data_user(data_request):
     
     data_user.append(new_user)
     UserModel.save_json(data_user)
+    
 
 
 

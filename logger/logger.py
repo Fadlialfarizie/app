@@ -8,8 +8,11 @@ def setup_logging(app):
     if not os.path.exists('logs'):
         os.makedirs('logs')
     
+    root_logger = logging.getLogger()
+    root_logger.setLevel(logging.INFO)
 
-    if app.logger.handlers:
+
+    if root_logger.handlers:
         return
 
     #setup handler file log
@@ -22,9 +25,7 @@ def setup_logging(app):
 
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     file_handler.setFormatter(formatter)
-
     file_handler.setLevel(logging.INFO)
 
-    app.logger.addHandler(file_handler)
-    app.logger.setLevel(logging.INFO)
+    root_logger.addHandler(file_handler)
     app.logger.info('logging setup complete')

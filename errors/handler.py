@@ -33,8 +33,12 @@ class ConflictError(AppError):
     def __init__(self, message='conflict data'):
         super().__init__(message, code='conflict_error', status_code=409)
 
+class InternalError(AppError):
+    def __init__(self, message='internal server error'):
+        super().__init__(message, code='internal_error', status_code=500)
 
-class ValueError(AppError):
+
+class ValueAppError(AppError):
     def __init__(self, message='value error'):
         super().__init__(message, code='VALUE_ERROR', status_code=400)
 
