@@ -1,0 +1,33 @@
+2026-02-07 19:33:34,899 - app - INFO - logging setup complete
+2026-02-07 19:33:35,094 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-02-07 19:33:35,095 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-02-07 19:33:54,574 - werkzeug - INFO - 127.0.0.1 - - [07/Feb/2026 19:33:54] "GET / HTTP/1.1" 200 -
+2026-02-07 19:33:54,696 - werkzeug - INFO - 127.0.0.1 - - [07/Feb/2026 19:33:54] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-02-07 19:36:23,894 - werkzeug - INFO - 127.0.0.1 - - [07/Feb/2026 19:36:23] "[31m[1mGET /produk/?search=kr&sort=produk&page=1&limit=10 HTTP/1.1[0m" 400 -
+2026-02-07 19:41:05,648 - werkzeug - INFO - 127.0.0.1 - - [07/Feb/2026 19:41:05] "[31m[1mGET /produk/?search=kr&sort=produk&page=1&limit=10 HTTP/1.1[0m" 400 -
+2026-02-07 19:41:06,857 - werkzeug - INFO - 127.0.0.1 - - [07/Feb/2026 19:41:06] "[31m[1mGET /produk/?search=kr&sort=produk&page=1&limit=10 HTTP/1.1[0m" 400 -
+2026-02-07 19:43:20,819 - werkzeug - INFO - 127.0.0.1 - - [07/Feb/2026 19:43:20] "[31m[1mGET /produk/?search=kr&sort=produk&page=1&limit=10 HTTP/1.1[0m" 400 -
+2026-02-07 19:43:58,994 - werkzeug - INFO - 127.0.0.1 - - [07/Feb/2026 19:43:58] "[31m[1mGET /produk/?search=kr&sort=produk&page=1&limit=10 HTTP/1.1[0m" 400 -
+2026-02-07 19:45:44,882 - werkzeug - INFO - 127.0.0.1 - - [07/Feb/2026 19:45:44] "[31m[1mGET /produk/?search=kr&sort=produk&page=1&limit=10 HTTP/1.1[0m" 400 -
+2026-02-07 19:45:46,159 - werkzeug - INFO - 127.0.0.1 - - [07/Feb/2026 19:45:46] "[31m[1mGET /produk/?search=kr&sort=produk&page=1&limit=10 HTTP/1.1[0m" 400 -
+2026-02-07 19:46:23,520 - app - INFO - logging setup complete
+2026-02-07 19:46:23,577 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-02-07 19:46:23,578 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-02-07 19:46:29,399 - werkzeug - INFO - 127.0.0.1 - - [07/Feb/2026 19:46:29] "[33mGET /produk/?search=kr&sort=produk&page=1&limit=10 HTTP/1.1[0m" 404 -
+2026-02-07 19:47:08,537 - app - INFO - logging setup complete
+2026-02-07 19:47:08,602 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-02-07 19:47:08,602 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-02-07 19:47:12,484 - werkzeug - INFO - 127.0.0.1 - - [07/Feb/2026 19:47:12] "[31m[1mGET /produk/?search=kr&sort=produk&page=1&limit=10 HTTP/1.1[0m" 400 -
+2026-02-07 19:47:53,217 - app - INFO - logging setup complete
+2026-02-07 19:47:53,293 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-02-07 19:47:53,294 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-02-07 19:47:58,292 - werkzeug - INFO - 127.0.0.1 - - [07/Feb/2026 19:47:58] "[31m[1mGET /produk/?search=kr&sort=produk&page=1&limit=10 HTTP/1.1[0m" 400 -
+2026-02-07 19:48:45,602 - app - INFO - logging setup complete
+2026-02-07 19:48:45,675 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-02-07 19:48:45,675 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-02-07 19:48:49,680 - werkzeug - INFO - 127.0.0.1 - - [07/Feb/2026 19:48:49] "GET /produk/?search=kr&sort=produk&page=1&limit=10 HTTP/1.1" 200 -

@@ -1,5 +1,6 @@
 from models.product_model import ProductModel
-from errors.handler import NotFoundError
+from errors.handler import NotFoundError, ValidationError
+import math
 
 
 
@@ -20,12 +21,55 @@ def get_product_by_id(id):
 
 def filter_produk_by_name(key_search):
     products = get_all_product()
-    filter_produk = list(filter(lambda x: key_search.lower() in x['produk'].lower(), products))
+    filter_produk = [i for i in products if key_search in i['produk']]
 
     if not filter_produk:
         raise NotFoundError('produk tidak ditemukan')
 
     return filter_produk
+
+
+
+def paginate_produk(data_query):
+    products = get_all_product()
+    search = data_query.get('search')
+
+    if search:
+        products = filter_produk_by_name(search)
+    
+    sort_key = data_query.get('sort', 'id')
+    
+
+    products = sorted(products, key=lambda x : x[sort_key], reverse=False )
+
+    total_produk = len(products)
+    limit = int(data_query.get('limit'))
+    page = int(data_query.get('page'))
+
+    if limit < 1 or page < 1:
+        raise ValidationError('page/limit tidak boleh kurang dari 1')
+
+    total_page = math.ceil(total_produk/limit)
+    start = (page - 1) * limit
+    end = limit - 1
+
+    product_page = products[start:end]
+
+    return {
+        'data' : product_page,
+        'pagination' : {
+            'page' : page,
+            'limit' : limit,
+            'total_page' : total_page
+        }
+    }
+
+
+
+
+    
+
+
 
 def create_product(data_product):
     all_product =get_all_product()

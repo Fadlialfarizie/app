@@ -1,26 +1,26 @@
 from flask import  Blueprint, jsonify, request
-from services.produk_service import get_all_product,filter_produk_by_name, create_product, remove_product
+from services.produk_service import get_all_product,filter_produk_by_name, create_product, remove_product, paginate_produk
 from errors.handler import ValidationError
 from utils.jwt_generate import login_required, role_required
 from schemas.product_schema import ProductSchema
 
 
 
-
-
-
 bp_produk = Blueprint('produk', __name__, url_prefix='/produk')
 schema = ProductSchema()
 
+
+
 @bp_produk.route('/')
 def products():
-    name = request.args.get('q')
-    if name:
-        product = filter_produk_by_name(name)
+    data_request = request.args
+    if data_request:
+        product = paginate_produk(data_request)
         return jsonify({
             'success' : True,
-            'message' : 'get product',
-            'data' : product
+            'message' : 'product page',
+            'data' : product["data"],
+            'pagination' : product['pagination']
         })
     return jsonify({
         'success' : True,
