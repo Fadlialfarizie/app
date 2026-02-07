@@ -21,7 +21,7 @@ def get_product_by_id(id):
 
 def filter_produk_by_name(key_search):
     products = get_all_product()
-    filter_produk = [i for i in products if key_search in i['produk']]
+    filter_produk = [i for i in products if key_search.lower() in i['produk'].lower()]
 
     if not filter_produk:
         raise NotFoundError('produk tidak ditemukan')
@@ -38,20 +38,29 @@ def paginate_produk(data_query):
         products = filter_produk_by_name(search)
     
     sort_key = data_query.get('sort', 'id')
+
+    if sort_key not in products[0]:
+        raise ValidationError('sort key tidak valid')
+    
+    order = data_query.get('order', 'desc')
+    reverse = order == 'desc'
     
 
-    products = sorted(products, key=lambda x : x[sort_key], reverse=False )
+    products = sorted(products, key=lambda x : x[sort_key], reverse=reverse )
 
     total_produk = len(products)
     limit = int(data_query.get('limit'))
     page = int(data_query.get('page'))
+    
+    if not page or not limit:
+        raise ValidationError('page/limit kosong')
 
     if limit < 1 or page < 1:
         raise ValidationError('page/limit tidak boleh kurang dari 1')
 
     total_page = math.ceil(total_produk/limit)
     start = (page - 1) * limit
-    end = limit - 1
+    end = start + limit 
 
     product_page = products[start:end]
 
