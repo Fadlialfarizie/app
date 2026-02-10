@@ -27,5 +27,11 @@ def setup_logging(app):
     file_handler.setFormatter(formatter)
     file_handler.setLevel(logging.INFO)
 
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(formatter)
+    stream_handler.setLevel(logging.INFO)
+
+
     root_logger.addHandler(file_handler)
+    root_logger.addHandler(stream_handler)
     app.logger.info('logging setup complete')

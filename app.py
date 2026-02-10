@@ -6,6 +6,7 @@ from routes.user import bp_user
 from routes.auth import bp_auth
 from routes.produk import bp_produk
 from errors.handler import register_error_handlers
+from middleware.request_logger import register_request_logger
 
 
 
@@ -29,6 +30,7 @@ def create_app():
     app.register_blueprint(bp_produk)
 
     register_error_handlers(app)
+    register_request_logger(app)
 
 
     return app

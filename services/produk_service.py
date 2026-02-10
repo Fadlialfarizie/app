@@ -49,11 +49,11 @@ def paginate_produk(data_query):
     products = sorted(products, key=lambda x : x[sort_key], reverse=reverse )
 
     total_produk = len(products)
-    limit = int(data_query.get('limit'))
-    page = int(data_query.get('page'))
-    
-    if not page or not limit:
-        raise ValidationError('page/limit kosong')
+    try:
+        limit = int(data_query.get('limit'))
+        page = int(data_query.get('page'))
+    except TypeError:
+        raise ValidationError('page/limit harus angka')
 
     if limit < 1 or page < 1:
         raise ValidationError('page/limit tidak boleh kurang dari 1')
