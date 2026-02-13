@@ -15,9 +15,11 @@ def register_request_logger(app):
 
     @app.after_request
     def logger_response(response):
-        time_response = time.time() - request.time_request
+        time_response = (time.time() - request.time_request) * 1000
+        ip = request.remote_addr
+        method = request.method
+        path = request.path
         logging.info(
-            f'{request.method} - {request.path}'
-            f'duration : {time_response: .3f}s'
+            f'IP: {ip} - {method} - {path} - duration : {time_response: .3f}ms'
         )
         return response
